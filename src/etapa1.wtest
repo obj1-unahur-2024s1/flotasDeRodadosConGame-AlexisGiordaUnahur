@@ -1,0 +1,84 @@
+import rodados.*
+import municipalidad.*
+
+test "Dependencia deportes" {
+	//creación de instancias
+	const cachito = new Corsa(color = "rojo")
+	const corsaAzul = new Corsa(color = "azul")
+	const corsaVerde = new Corsa(color = "verde")
+	const kwind = new Kwind()
+	const autoEspecial = new AutoEspecial()
+	const deportes = new Dependencia()
+	
+	//seters de instancias
+	deportes.empleados(45)
+	kwind.agregarTanqueAdicional()
+	autoEspecial.capacidad(5)
+	autoEspecial.velocidadMax(160)
+	autoEspecial.peso(1200)
+	autoEspecial.color("beige")
+	
+	//agrego los rodados a la dependencia deportes
+	deportes.agregarAFlota(cachito)
+	deportes.agregarAFlota(corsaAzul)
+	deportes.agregarAFlota(corsaVerde)
+	deportes.agregarAFlota(kwind)
+	deportes.agregarAFlota(autoEspecial)
+	
+	//tests
+	assert.equals(6450,deportes.pesoTotalFlota())
+	assert.that(deportes.estaBienEquipada())
+	assert.equals(7,deportes.capacidadTotalEnColor("azul"))
+	assert.equals("beige",deportes.colorDelRodadoMasRapido())
+	assert.that(deportes.esGrande())
+	assert.equals(25,deportes.capacidadFaltante())
+}
+
+test "Dependencia cultura" {
+	//creación de instancias
+	const cachito = new Corsa(color = "rojo")
+	const kwind1 = new Kwind()
+	const kwind2 = new Kwind()
+	const kwind3 = new Kwind()
+	const trafic = new Trafic(interior = interiorPopular, motor = motorBarato)
+	const cultura = new Dependencia()
+	
+	//seters de instancias
+	cultura.empleados(31)
+	kwind1.agregarTanqueAdicional()
+	kwind2.agregarTanqueAdicional()
+	
+	//agrego los rodados a la dependencia cultura
+	cultura.agregarAFlota(cachito)
+	cultura.agregarAFlota(kwind1)
+	cultura.agregarAFlota(kwind2)
+	cultura.agregarAFlota(kwind3)
+	cultura.agregarAFlota(trafic)
+	
+	//tests
+	assert.equals(10700,cultura.pesoTotalFlota())
+	assert.notThat(cultura.estaBienEquipada())
+	assert.equals(10,cultura.capacidadTotalEnColor("azul"))
+	assert.equals("rojo",cultura.colorDelRodadoMasRapido())
+	assert.notThat(cultura.esGrande())
+	assert.equals(5,cultura.capacidadFaltante())
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
