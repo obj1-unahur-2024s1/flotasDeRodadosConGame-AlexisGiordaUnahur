@@ -7,16 +7,11 @@ test "Dependencia deportes" {
 	const corsaAzul = new Corsa(color = "azul")
 	const corsaVerde = new Corsa(color = "verde")
 	const kwind = new Kwind()
-	const autoEspecial = new AutoEspecial()
-	const deportes = new Dependencia()
+	const autoEspecial = new AutoEspecial(capacidad = 5, velocidadMax = 160, peso = 1200, color = "beige")
+	const deportes = new Dependencia(empleados = 45)
 	
 	//seters de instancias
-	deportes.empleados(45)
 	kwind.agregarTanqueAdicional()
-	autoEspecial.capacidad(5)
-	autoEspecial.velocidadMax(160)
-	autoEspecial.peso(1200)
-	autoEspecial.color("beige")
 	
 	//agrego los rodados a la dependencia deportes
 	deportes.agregarAFlota(cachito)
@@ -41,10 +36,9 @@ test "Dependencia cultura" {
 	const kwind2 = new Kwind()
 	const kwind3 = new Kwind()
 	const trafic = new Trafic(interior = interiorPopular, motor = motorBarato)
-	const cultura = new Dependencia()
+	const cultura = new Dependencia(empleados=31)
 	
 	//seters de instancias
-	cultura.empleados(31)
 	kwind1.agregarTanqueAdicional()
 	kwind2.agregarTanqueAdicional()
 	

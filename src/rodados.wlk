@@ -31,10 +31,10 @@ class Trafic{
 }
 
 class AutoEspecial{
-	var capacidad = 0
-	var velocidadMax = 0
-	var peso = 0
-	var color = ""
+	var capacidad
+	var velocidadMax
+	var peso
+	var color
 	
 	method capacidad() = capacidad
 	method velocidadMax() = velocidadMax

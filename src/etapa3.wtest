@@ -1,0 +1,33 @@
+import rodados.*
+import municipalidad.*
+import pedidos.*
+
+test "probando los pedidos con dependencia deportes" {
+	//creación de instancias
+	const cachito = new Corsa(color = "rojo")
+	const corsaAzul = new Corsa(color = "azul")
+	const corsaVerde = new Corsa(color = "verde")
+	const kwind = new Kwind()
+	const autoEspecial = new AutoEspecial(capacidad = 5, velocidadMax = 160, peso = 1200, color = "beige")
+	const deportes = new Dependencia(empleados = 45)
+	const pedido = new Pedido(distanciaRequerida = 960, tiempoMax = 8, pasajeros = 4, coloresIncompatibles = ["azul","negro"])
+	const pedido2 = new Pedido(distanciaRequerida = 600, tiempoMax = 6, pasajeros = 6, coloresIncompatibles = ["azul","negro"])
+	const pedido3 = new Pedido(distanciaRequerida = 600, tiempoMax = 6, pasajeros = 6, coloresIncompatibles = ["azul","rojo","verde"])
+	
+	//seters de instancias
+	kwind.agregarTanqueAdicional()
+	
+	//agrego los rodados a la dependencia deportes
+	deportes.agregarAFlota(cachito)
+	deportes.agregarAFlota(corsaAzul)
+	deportes.agregarAFlota(corsaVerde)
+	deportes.agregarAFlota(kwind)
+	deportes.agregarAFlota(autoEspecial)
+	deportes.agregarPedido(pedido)
+	deportes.agregarPedido(pedido2)
+	deportes.agregarPedido(pedido3)
+	
+	assert.equals(16,deportes.pasajerosEnPedidos())
+	assert.that(deportes.todosIncompatiblesCon("azul"))
+
+}

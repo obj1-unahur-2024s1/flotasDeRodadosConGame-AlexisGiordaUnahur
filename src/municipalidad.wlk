@@ -1,8 +1,10 @@
 import rodados.*
+import pedidos.*
 
 class Dependencia{
 	const flota = []
-	var empleados = 0
+	var empleados
+	const pedidos = []
 	
 	method flota() = flota
 	method empleados() = empleados
@@ -20,7 +22,8 @@ class Dependencia{
 		return rodadoMasRapido.color()
 	}
 	method capacidadTotal() = flota.sum({r=>r.capacidad()})
-	//method capacidadFaltante() = self.empleados() - self.capacidadTotal() 
+	method capacidadFaltante() = self.empleados() - self.capacidadTotal() 
+	/* da error porque faltante no puede ser un int en una rama y un str en otra
 	method capacidadFaltante(){
 		var faltante = 0
 		if (self.empleados() - self.capacidadTotal()>0){
@@ -29,6 +32,40 @@ class Dependencia{
 			faltante = "Hay más capacidad que empleados"
 		}
 		return faltante
-	}
+	}}
+	*/
 	method esGrande() = flota.size()>=5 and self.empleados()>=40
+	method pedidos() = pedidos
+	method agregarPedido(unPedido){pedidos.add(unPedido)}
+	method quitarPedido(unPedido){if (pedidos.contains(unPedido)) pedidos.remove(unPedido)}
+	method pasajerosEnPedidos() = pedidos.sum({p=>p.pasajeros()})
+	//method pedidosImposibles() = pedidos.filter({p=>p.puedeSatisfacerElPedido()})
+	//method pedidosImposibles() = flota.map({a=> pedidos.forEach({p=> p.puedeSatisfacerElPedido(a)})}) 
+	method todosIncompatiblesCon(unColor) = pedidos.all({p=>p.coloresIncompatibles().contains(unColor)})
+	method relajarTodos() = pedidos.forEach({p=>p.relajar()})
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

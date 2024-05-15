@@ -1,0 +1,17 @@
+import rodados.*
+import municipalidad.*
+import pedidos.*
+
+test "probando pedido satisfaciendo" {
+	const cachito = new Corsa(color = "rojo")
+	const pedido = new Pedido(distanciaRequerida = 960, tiempoMax = 8, pasajeros = 4, coloresIncompatibles = ["azul","negro"])
+	
+	assert.that(pedido.puedeSatisfacerElPedido(cachito))
+}
+
+test "probando pedidos sin satisfacer" {
+	const cachito = new Corsa(color = "rojo")
+	const pedido = new Pedido(distanciaRequerida = 960, tiempoMax = 6, pasajeros = 6, coloresIncompatibles = ["azul","negro","rojo"])
+	
+	assert.notThat(pedido.puedeSatisfacerElPedido(cachito))
+}
